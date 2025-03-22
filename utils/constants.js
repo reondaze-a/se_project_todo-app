@@ -28,4 +28,6 @@ const initialTodos = [
     inactiveButtonClass: "button_disabled",
   };
 
-  export { initialTodos, validationConfig };
+const todo_template_selector = "#todo-template"
+
+export { initialTodos, validationConfig, todo_template_selector as tts };
