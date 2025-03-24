@@ -18,6 +18,10 @@ class Todo {
         this._todoDeleteBtn.addEventListener("click", () => {
             this._element.remove()
         });
+
+        this._todoCheckboxEl.addEventListener("change", () => {
+            this._completed = this._todoCheckboxEl.checked;
+        })
     }
 
     _setDueDate() {
