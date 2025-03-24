@@ -6,10 +6,15 @@ import FormValidator from '../components/FormValidator.js';
 
 const addTodoButton = document.querySelector(".button_action_add");
 const addTodoPopup = document.querySelector("#add-todo-popup");
-const addTodoForm = addTodoPopup.querySelector(".popup__form");
+const addTodoForm = document.forms["add-todo-form"];
 const addTodoCloseBtn = addTodoPopup.querySelector(".popup__close");
 const todosList = document.querySelector(".todos__list");
 const validator = new FormValidator(validationConfig, addTodoForm);
+
+function generateTodo(item) {
+  const todo = new Todo(item, tts);
+  return todo.getView();
+}
 
 const openModal = (modal) => {
   modal.classList.add("popup_visible");
@@ -37,15 +42,15 @@ addTodoForm.addEventListener("submit", (evt) => {
   date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
 
   const values = { id: uuidv4(), name, completed: false, date };
-  const todo = new Todo(values, tts);
-  todosList.append(todo.getView());
+  const todo = generateTodo(values)
+  todosList.append(todo);
   closeModal(addTodoPopup);
   validator.resetValidation();
 });
 
 initialTodos.forEach((item) => {
-  const todo = new Todo(item, tts);
-  todosList.append(todo.getView());
+  const todo = generateTodo(item)
+  todosList.append(todo);
 });
 
 
