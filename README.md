@@ -8,8 +8,6 @@ This app is a simple ToDo app which allows users to create a to-do list. It can 
 
 ## Technology
 
-Give a description of the technologies and techniques used. Pictures, GIFs, or screenshots that detail the project features are recommended.
-
 The project uses Javascript modules, using multiple files for a better structured and cleaner project. This project also implements OOP or Object-Oriented-Programming by taking advantage of the use of classes which makes the code more organized, reusable, as well as scalable.
 
 ## Deployment
