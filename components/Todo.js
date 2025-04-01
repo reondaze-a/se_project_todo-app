@@ -16,11 +16,22 @@ class Todo {
 
     _setEventListeners() {
         this._todoDeleteBtn.addEventListener("click", () => {
-            this._element.remove()
+            this._element.remove();
+            document.dispatchEvent(new CustomEvent("todoDeleted", {
+                detail: {
+                    increment: false,
+                    completed: this._completed
+                }
+            }))
         });
 
         this._todoCheckboxEl.addEventListener("change", () => {
             this._completed = this._todoCheckboxEl.checked;
+            document.dispatchEvent(new CustomEvent("todoCompleted", {
+                detail: {
+                    completed: this._completed
+                }
+            }))
         })
     }
 
@@ -36,7 +47,7 @@ class Todo {
     }
 
     getView() {
-        this._element = this._getTemplate(this._selector)
+        this._element = this._getTemplate(this._selector);
         this._todoNameEl = this._element.querySelector(".todo__name");
         this._todoCheckboxEl = this._element.querySelector(".todo__completed");
         this._todoLabel = this._element.querySelector(".todo__label");
@@ -48,10 +59,11 @@ class Todo {
         this._todoCheckboxEl.id = `todo-${this._id}`;
         this._todoLabel.setAttribute("for", `todo-${this._id}`); 
         this._setEventListeners();
-        this._setDueDate()
+        this._setDueDate();
 
         return this._element;
     }
+
 }
 
 export default Todo;
